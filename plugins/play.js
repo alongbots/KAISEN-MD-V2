@@ -124,3 +124,93 @@ plugin({
 			});
 		}
 });
+
+// New video download command
+plugin({
+	pattern: 'ong ?(.*)',
+	fromMe: mode,
+	desc: 'Search and download a song from YouTube as video',
+	react: "🎵",
+	type: "downloader"
+}, async (message, match) => {
+	try {
+		match = match || message.reply_message?.text;
+		if (!match) {
+			return await message.send("Please provide a song name or YouTube link to download.", {linkPreview: linkPreview()});
+		}
+
+		let videoUrl = match;
+		if (!match.includes("youtube.com") && !match.includes("youtu.be")) {
+			await message.send("*🎐 𝐊ąìʂҽղ-𝐌𝐃 𝐒𝐄𝐀𝐑𝐂𝐇𝐈𝐍𝐆 𝐒𝐎𝐍𝐆...*", {linkPreview: linkPreview()});
+			const searchResults = await yts(match);
+			if (!searchResults.videos.length) {
+				return await message.send("No results found for your query.", {linkPreview: linkPreview()});
+			}
+			videoUrl = searchResults.videos[0].url;
+		}
+
+		const apiUrl = `https://apis.davidcyriltech.my.id/youtube/mp4?url=${videoUrl}`;
+		const response = await axios.get(apiUrl);
+
+		if (!response.data || !response.data.status || !response.data.result.url) {
+			return await message.send("Failed to fetch the video. Try again later.", {linkPreview: linkPreview()});
+		}
+
+		const caption = `🎶 *Title:* ${response.data.result.title}\n🔗 *Link:* ${videoUrl}`;
+
+		await message.send(response.data.result.url, {
+			caption: caption,
+			mimetype: 'video/mp4',
+			linkPreview: linkPreview()
+		}, 'video');
+
+	} catch (e) {
+		console.error("Error in ong command:", e);
+		await message.send("An error occurred while processing your request.", {linkPreview: linkPreview()});
+	}
+});
+
+// New audio download command
+plugin({
+	pattern: 'music ?(.*)',
+	fromMe: mode,
+	desc: 'Search and download audio from YouTube',
+	react: "🎧",
+	type: "downloader"
+}, async (message, match) => {
+	try {
+		match = match || message.reply_message?.text;
+		if (!match) {
+			return await message.send("*𝐏ℓєα𝐬֟፝є 𝐏ʀ๏νιɖє 𝐀 𝐒๏ƞ͛g 𝐍αмє..*", {linkPreview: linkPreview()});
+		}
+
+		let videoUrl = match;
+		if (!match.includes("youtube.com") && !match.includes("youtu.be")) {
+			await message.send("*🎐 𝐊ąìʂҽղ-𝐌𝐃 𝐒𝐄𝐀𝐑𝐂𝐇𝐈𝐍𝐆 𝐒𝐎𝐍𝐆...*", {linkPreview: linkPreview()});
+			const searchResults = await yts(match);
+			if (!searchResults.videos.length) {
+				return await message.send("No results found for your query.", {linkPreview: linkPreview()});
+			}
+			videoUrl = searchResults.videos[0].url;
+		}
+
+		const apiUrl = `https://apis.davidcyriltech.my.id/youtube/mp3?url=${videoUrl}`;
+		const response = await axios.get(apiUrl);
+
+		if (!response.data || !response.data.success || !response.data.result.downloadUrl) {
+			return await message.send("Failed to fetch the audio. Try again later.", {linkPreview: linkPreview()});
+		}
+
+		const caption = `🎵 *Title:* ${response.data.result.title}\n🔗 *Link:* ${videoUrl}`;
+
+		await message.send(response.data.result.downloadUrl, {
+			caption: caption,
+			mimetype: "audio/mpeg",
+			linkPreview: linkPreview()
+		}, 'audio');
+
+	} catch (e) {
+		console.error("Error in music command:", e);
+		await message.send("An error occurred while processing your request.", {linkPreview: linkPreview()});
+	}
+});

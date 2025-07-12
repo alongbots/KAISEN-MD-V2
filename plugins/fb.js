@@ -10,8 +10,7 @@ const {
 const axios = require('axios');
 
 plugin({
-    pattern: 'fbdl ?(.*)',
-    alias: ['facebook', 'fb'],
+    pattern: 'fb ?(.*)',
     react: "⏰",
     desc: 'Download videos from Facebook',
     type: "downloader",

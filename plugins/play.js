@@ -2,6 +2,8 @@ const {
 	plugin,sleep,extractUrlsFromString,searchYT,downloadMp3,downloadMp4,
 	linkPreview,getYTInfo,getBuffer,AudioMetaData,toAudio,config,mode
 } = require('../lib');
+const yts = require("yt-search");
+const axios = require("axios");
 
 plugin({
 	pattern: 'play',

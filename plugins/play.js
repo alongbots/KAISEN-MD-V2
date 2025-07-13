@@ -4,40 +4,47 @@ const {
 } = require('../lib');
 const yts = require("yt-search");
 const axios = require("axios");
-
+/*
 plugin({
-	pattern: 'play',
-	type: "downloader",
-	desc: 'download youtube video',
-	fromMe: mode
+    pattern: 'play',
+    type: "downloader",
+    desc: 'download youtube video',
+    fromMe: mode
 }, async (message, match) => {
-	match = match || message.reply_message.text;
-		if (!match) return await message.send('_give me some query_');
-		const url = await extractUrlsFromString(match);
-		if (!url[0]) {
-			const result = await searchYT(match);
-			if (!result[0]) return await message.send('_Not Found_');
-			const {
-				title,
-				publishDate,
-				viewCount,
-				thumbnail
-			} = await getYTInfo(result[0].url);
-			return await message.sendReply(thumbnail, {
-				caption: GenListMessage(title, ["• video", "• video document", "• audio", "• audio document"], false, "\n_Send number as reply to download_")
-			}, "image");
-		} else {
-			const {
-				title,
-				publishDate,
-				viewCount,
-				thumbnail
-			} = await getYTInfo(url[0]);
-			return await message.sendReply(thumbnail, {
-				caption: GenListMessage(title, ["• video", "• video document", "• audio", "• audio document"], false, "\n_Send number as reply to download_")
-			}, "image");
-		}
+    match = match || message.reply_message.text;
+    if (!match) return await message.send('_give me some query_');
+    const url = await extractUrlsFromString(match);
+    if (!url[0]) {
+        const result = await searchYT(match);
+        if (!result[0]) return await message.send('_Not Found_');
+        const {
+            title,
+            publishDate,
+            viewCount,
+            thumbnail
+        } = await getYTInfo(result[0].url);
+        return await message.sendReply(thumbnail, {
+            caption: GenListMessage(title, ["• video", "• video document", "• audio", "• audio document"], false, "\n_Send number as reply to download_")
+        }, "image");
+    } else {
+        const {
+            title,
+            publishDate,
+            viewCount,
+            thumbnail
+        } = await getYTInfo(url[0]);
+        return await message.sendReply(thumbnail, {
+            caption: GenListMessage(title, ["• video", "• video document", "• audio", "• audio document"], false, "\n_Send number as reply to download_")
+        }, "image");
+    }
 });
+
+// GenListMessage function definition
+function GenListMessage(title, options, isNumbered = true, separator = "\n") {
+    let list = isNumbered ? options.map((option, index) => `${index + 1}. ${option}`).join(separator) : options.join(separator);
+    return `${title}\n${list}`;
+}
+
 plugin({
 	on: 'text',
 	fromMe: mode
@@ -116,11 +123,11 @@ plugin({
 				quoted: message.data
 			});
 		}
-});
+});*/
 
 // New video download command
 plugin({
-	pattern: 'ong ?(.*)',
+	pattern: 'mp4 ?(.*)',
 	fromMe: mode,
 	desc: 'Search and download a song from YouTube as video',
 	react: "🎵",
@@ -165,7 +172,7 @@ plugin({
 
 // New audio download command
 plugin({
-	pattern: 'music ?(.*)',
+	pattern: 'mp3 ?(.*)',
 	fromMe: mode,
 	desc: 'Search and download audio from YouTube',
 	react: "🎧",

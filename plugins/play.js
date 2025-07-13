@@ -127,7 +127,7 @@ plugin({
 
 // New video download command
 plugin({
-	pattern: 'mp4 ?(.*)',
+pattern: 'video ?(.*)',
 	fromMe: mode,
 	desc: 'Search and download a song from YouTube as video',
 	react: "🎵",
@@ -172,7 +172,7 @@ plugin({
 
 // New audio download command
 plugin({
-	pattern: 'mp3 ?(.*)',
+pattern: 'song ?(.*)',
 	fromMe: mode,
 	desc: 'Search and download audio from YouTube',
 	react: "🎧",

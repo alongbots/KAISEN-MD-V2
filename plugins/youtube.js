@@ -1,5 +1,5 @@
 
-const {
+/*const {
 	plugin, sleep, extractUrlsFromString, searchYT, downloadMp3, downloadMp4,
 	linkPreview, getYTInfo, getBuffer, AudioMetaData, toAudio, config, mode
 } = require('../lib');
@@ -110,4 +110,4 @@ plugin({
 		console.error('Video download error:', error);
 		await message.send('❌ An error occurred while downloading the video.');
 	}
-});
+});*/

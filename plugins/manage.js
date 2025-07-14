@@ -44,7 +44,7 @@ plugin({
 });
 
 plugin({
-    pattern: 'antilink ?(.*)',
+    pattern: 'antilin ?(.*)',
     desc: 'remove users who use bot',
     type: "manage",
     onlyGroup: true,

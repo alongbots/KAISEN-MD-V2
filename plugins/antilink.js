@@ -7,6 +7,7 @@ const actions = ['warn', 'kick', 'null'];
 plugin({
     pattern: 'antilink ?(.*)',
     desc: 'Manage anti-link settings',
+     react: '🍄',
     type: 'manage',
     onlyGroup: true,
     fromMe: true

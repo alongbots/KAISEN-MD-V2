@@ -41,7 +41,7 @@ module.exports = {
     LINK_PREVIEW: process.env.LINK_PREVIEW || 'KAISEN;Bot;https://graph.org/file/1ec147e94d9775916e665.jpg',//you can use "false" alslo
     API_TYPE: process.env.API_TYPE || 'all',//unique
     BRAINSHOP: process.env.BRAINSHOP || '172372,nbjE0YAlyw3cpoMl',
-    SUDO : process.env.SUDO || "null",
+    SUDO : process.env.SUDO || "917003816486",
     RMBG_KEY: process.env.RMBG_KEY,
     OPEN_AI: process.env.OPEN_AI,
     ELEVENLABS: process.env.ELEVENLABS,

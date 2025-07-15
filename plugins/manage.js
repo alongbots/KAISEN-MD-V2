@@ -43,30 +43,83 @@ plugin({
     }
 });
 
+
 plugin({
-    pattern: 'antilin ?(.*)',
-    desc: 'remove users who use bot',
-    type: "manage",
+    pattern: 'antilink ?(.*)',
+    desc: 'Manage anti-link settings',
+    type: 'manage',
     onlyGroup: true,
-    fromMe: true 
+    fromMe: true
 }, async (message, match) => {
-    if (!match) return await message.reply("_*antilink* on/off_\n_*antilink* action warn/kick/null_");
-    const {antilink} = await groupDB(['link'], {jid: message.jid, content: {}}, 'get');
-    if(match.toLowerCase() == 'on') {
-    	const action = antilink && antilink.action ? antilink.action : 'null';
-        await groupDB(['link'], {jid: message.jid, content: {status: 'true', action }}, 'set');
-        return await message.send(`_antilink Activated with action null_\n_*antilink action* warn/kick/null for chaning actions_`)
-    } else if(match.toLowerCase() == 'off') {
-    	const action = antilink && antilink.action ? antilink.action : 'null';
-        await groupDB(['link'], {jid: message.jid, content: {status: 'false', action }}, 'set')
-        return await message.send(`_antilink deactivated_`)
-    } else if(match.toLowerCase().match('action')) {
-    	const status = antilink && antilink.status ? antilink.status : 'false';
-        match = match.replace(/action/gi,'').trim();
-        if(!actions.includes(match)) return await message.send('_action must be warn,kick or null_')
-        await groupDB(['link'], {jid: message.jid, content: {status, action: match }}, 'set')
-        return await message.send(`_AntiBot Action Updated_`);
+   
+   const data = await groupDB(['link'], { jid: message.jid }, 'get');
+const current = data.link || { status: 'false', action: 'null', not_del: [], warns: {} };
+
+if (!match) {
+    return await message.reply(
+        `_*Antilink Settings:*_\n\n` +
+        `• antilink on/off\n` +
+        `• antilink action warn/kick/null\n` +
+        `• antilink not_del <url>\n\n` +
+        `*Current Settings:*\n` +
+        `• *Status:* ${current.status === 'true' ? 'ON' : 'OFF'}\n` +
+        `• *Action:* ${current.action === 'null' ? 'None' : current.action}\n` +
+        `• *Not Delete URLs:* ${current.not_del.length > 0 ? current.not_del.join(', ') : 'None'}`
+      
+    );
+}
+
+    match = match.trim().toLowerCase();
+
+    if (match === 'on') {
+        await groupDB(['link'], {
+            jid: message.jid,
+            content: { ...current, status: 'true' }
+        }, 'set');
+        return await message.send(`✅ Antilink activated with action *${current.action}*`);
     }
+
+    if (match === 'off') {
+        await groupDB(['link'], {
+            jid: message.jid,
+            content: { ...current, status: 'false' }
+        }, 'set');
+        return await message.send(`❌ Antilink deactivated`);
+    }
+
+    if (match.startsWith('action')) {
+        const action = match.replace('action', '').trim();
+        if (!actions.includes(action)) {
+            return await message.send('❗ Invalid action! Use: `warn`, `kick`, or `null`');
+        }
+
+        await groupDB(['link'], {
+            jid: message.jid,
+            content: { ...current, action }
+        }, 'set');
+        return await message.send(`✅ Antilink action set to *${action}*`);
+    }
+
+    if (match.startsWith('not_del')) {
+        const url = match.replace('not_del', '').trim();
+        if (!url.startsWith('http')) {
+            return await message.send('❗ Please provide a valid URL');
+        }
+
+        const list = current.not_del || [];
+        if (list.includes(url)) {
+            return await message.send('⚠️ URL is already in the ignore list');
+        }
+
+        list.push(url);
+        await groupDB(['link'], {
+            jid: message.jid,
+            content: { ...current, not_del: list }
+        }, 'set');
+        return await message.send('✅ URL added to ignore list');
+    }
+
+    return await message.send('⚠️ Invalid usage. Type `antilink` to see help.');
 });
 
 plugin({

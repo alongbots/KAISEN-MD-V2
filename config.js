@@ -5,7 +5,7 @@ if (existsSync('config.env')) require('dotenv').config({ path: './config.env' })
 process.env.NODE_OPTIONS = '--max_old_space_size=2560'//2.5
 const DB_URL =  process.env.DATABASE_URL || '';
 module.exports = {
-    SESSION_ID: process.env.SESSION_ID || 'KAISEN~flhGiTRT#DVPhjOOg0OTvRBiuC-FiW4KKlgTsrAb6hakA_jPL8rQ', //your ssid to run bot
+    SESSION_ID: process.env.SESSION_ID || '', //your ssid to run bot
     HEROKU: {
         API_KEY: process.env.HEROKU_API_KEY,
         APP_NAME: process.env.HEROKU_APP_NAME
@@ -31,7 +31,7 @@ module.exports = {
     WARNCOUND : process.env.WARNCOUND || 5,
     BOT_INFO : process.env.BOT_INFO || "KAISEN-BOT-MD;kaisen;https://files.catbox.moe/tzdb08.mp4",
     WORKTYPE : process.env.WORKTYPE || "public",
-    CMD_NAME : process.env.CMD_NAME || "KAISEN-BOT",
+    CMD_NAME : process.env.CMD_NAME || "© ᴘσωєʀє∂ ву 𝖐𝚊𝚒𝚜𝖊𝖓 𝙼ԃ⎯꯭̽💀",
     PREFIX : process.env.PREFIX || "[.,!]",//both  .  and [.] equal, for multi prefix we use [] this
     PERSONAL_MESSAGE: process.env.PERSONAL_MESSAGE || "null",
     BOT_PRESENCE : process.env.BOT_PRESENCE || "unavailable",

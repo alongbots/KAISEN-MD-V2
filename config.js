@@ -31,7 +31,7 @@ module.exports = {
     WARNCOUND : process.env.WARNCOUND || 5,
     BOT_INFO : process.env.BOT_INFO || "KAISEN-BOT-MD;kaisen;https://files.catbox.moe/tzdb08.mp4",
     WORKTYPE : process.env.WORKTYPE || "public",
-    CMD_NAME : process.env.CMD_NAME || "KAISEN-BOT",
+    CMD_NAME : process.env.CMD_NAME || "© ᴘσωєʀє∂ ву 𝖐𝚊𝚒𝚜𝖊𝖓 𝙼ԃ⎯꯭̽💀",
     PREFIX : process.env.PREFIX || "[.,!]",//both  .  and [.] equal, for multi prefix we use [] this
     PERSONAL_MESSAGE: process.env.PERSONAL_MESSAGE || "null",
     BOT_PRESENCE : process.env.BOT_PRESENCE || "unavailable",

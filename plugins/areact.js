@@ -1,82 +1,114 @@
+
+
 const { plugin } = require('../lib');
 const { personalDB } = require('../lib');
-const { getRandom, parsedJid } = require('../lib');
 
-const emojis = '😁,😆,😂,🤣,😇,🙂,😘,😉,😜,🥳,🤯,😤,😰,🤔,😶'.split(',');
+const formatStatus = (config) => {
+  if (!config) return '🛑 Auto-react is OFF';
 
-// ⚙️ Command to set AREACT value
+  const status = [];
+  if (config.includes('on')) status.push('✅ Enabled');
+  if (config.includes('only_pm')) status.push('📥 Only PM');
+  if (config.includes('only_group')) status.push('👥 Only Groups');
+
+  const reactOnlyList = (config.match(/react_only ([^\s]+)/g) || []).map(j => j.split(' ')[1]);
+  if (reactOnlyList.length) status.push('📍 React Only to:\n' + reactOnlyList.map(j => `   • ${j}`).join('\n'));
+
+  const notReactList = (config.match(/not_react ([^\s]+)/g) || []).map(j => j.split(' ')[1]);
+  if (notReactList.length) status.push('🚫 Do Not React to:\n' + notReactList.map(j => `   • ${j}`).join('\n'));
+
+  const emojiLine = config.match(/add_emoji (.+)/)?.[1]?.trim();
+  if (emojiLine) status.push('😄 Emojis:\n   ' + emojiLine.split(/ +/).join(' '));
+
+  return `⚙️ *Auto-react Settings:*\n\n${status.join('\n\n')}`;
+};
+
 plugin({
   pattern: 'areact ?(.*)',
   fromMe: true,
-  desc: 'Enable/Disable auto reaction',
-  type: 'mode',
+  desc: '🤖 Auto React settings',
+  type: 'owner'
 }, async (message, match) => {
-  if (!match) {
-    return await message.send(
-      `> *Usage:*\n` +
-      `- .areact on | off\n` +
-      `- .areact only_pm\n` +
-      `- .areact only_group\n` +
-      `- .areact react_only <jid>\n` +
-      `- .areact not_react <jid>`
-    );
+  const input = match?.trim();
+  let settings = await personalDB(['areact'], {}, 'get');
+  let config = settings?.areact || '';
+
+  switch (true) {
+    case input === 'on':
+      config = config.replace('off', '').trim();
+      if (!config.includes('on')) config += ' on';
+      break;
+
+    case input === 'off':
+      config = 'off';
+      break;
+
+    case input === 'only_pm':
+      config = config.replace('only_group', '').replace('only_pm', '').trim();
+      config += ' only_pm';
+      break;
+
+    case input === 'only_group':
+      config = config.replace('only_pm', '').replace('only_group', '').trim();
+      config += ' only_group';
+      break;
+
+    case input?.startsWith('react_only'):
+      {
+        const jid = input.split(' ')[1]?.trim();
+        if (!jid) return await message.reply('❌ Provide JID\nExample: `.areact react_only 1234@s.whatsapp.net`');
+        if (!config.includes(`react_only ${jid}`)) config += ` react_only ${jid}`;
+      }
+      break;
+
+    case input?.startsWith('not_react'):
+      {
+        const jid = input.split(' ')[1]?.trim();
+        if (!jid) return await message.reply('❌ Provide JID\nExample: `.areact not_react 1234@s.whatsapp.net`');
+        if (!config.includes(`not_react ${jid}`)) config += ` not_react ${jid}`;
+      }
+      break;
+
+    case input?.startsWith('add_emoji'):
+      {
+        let emojis = input.replace('add_emoji', '').replace(/[\s]+/g, '').trim();
+        if (!emojis) return await message.reply('❌ Provide emojis\nExample: `.areact add_emoji 😂🥲🔥`');
+
+        emojis = [...emojis].join(' ');
+        config = config.replace(/add_emoji\s+[^\n]+/, '').trim();
+        config += ` add_emoji ${emojis}`;
+      }
+      break;
+
+    case input === 'reset':
+      config = '';
+      break;
+
+    case input === '':
+      return await message.reply(
+        '*Usage:*\n' +
+        '- areact on / off\n' +
+        '- areact only_pm / only_group\n' +
+        '- areact react_only <jid>\n' +
+        '- areact not_react <jid>\n' +
+        '- areact add_emoji 😀😂🥲\n' +
+        '- areact reset\n\n' +
+        formatStatus(config.trim())
+      );
+
+    default:
+      return await message.reply(
+        '*Usage:*\n' +
+        '- areact on / off\n' +
+        '- areact only_pm / only_group\n' +
+        '- areact react_only <jid>\n' +
+        '- areact not_react <jid>\n' +
+        '- areact add_emoji 😀😂🥲\n' +
+        '- areact reset\n\n' +
+        formatStatus(config.trim())
+      );
   }
 
-  await personalDB(['areact'], { content: match }, 'set');
-  await message.send('✅ AREACT updated.');
-});
-
-// 🧾 Show current AREACT config
-plugin({
-  pattern: 'areactstatus',
-  fromMe: true,
-  desc: 'Show auto react setting',
-  type: 'mode',
-}, async (message) => {
-  const settings = await personalDB(['areact'], {}, 'get');
-  const config = settings.areact || 'not set';
-  await message.send(`📌 *AREACT:*\n\`\`\`${config}\`\`\``);
-});
-
-// 🔁 Main auto-react logic
-plugin({
-  on: 'text',
-  fromMe: false,
-  type: 'auto_react',
-}, async (message) => {
-  try {
-    if (message.fromMe) return; // ✅ Ignore self messages
-    if (!message.text || message.text.trim() === '') return; // ✅ Ignore empty/media
-
-    const settings = await personalDB(['areact'], {}, 'get');
-    const config = settings.areact || '';
-
-    if (!config || config.includes('off')) return;
-
-    const jid = message.jid;
-
-    // Filter: not_react
-    if (config.includes('not_react') && parsedJid(config).includes(jid)) return;
-
-    // Filter: react_only
-    if (config.includes('react_only') && !parsedJid(config).includes(jid)) return;
-
-    // Filter: only_pm
-    if (config.includes('only_pm') && message.isGroup) return;
-
-    // Filter: only_group
-    if (config.includes('only_group') && !message.isGroup) return;
-
-    // ✅ Send reaction
-    const reaction = {
-      text: getRandom(emojis),
-      key: message.key,
-    };
-
-    console.log("✅ Reacting to:", jid, "→", reaction.text);
-    await message.send(reaction, {}, 'react');
-
-  } catch (err) {
-    console.error('❌ Auto-react error:', err);
-  }
+  await personalDB(['areact'], { content: config.trim() }, 'set');
+  return await message.reply('✅ Updated!\n\n' + formatStatus(config.trim()));
 });

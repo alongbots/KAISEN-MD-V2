@@ -12,7 +12,7 @@
 
 2. pair kaisen
     <br>
-<a href="https://kaisen-md-pair.onrender.com"><img title="PAIR CODE" src="https://img.shields.io/badge/GET SESSION-h?color=black&style=for-the-badge&logo=msi"></a>
+<a href="https://pair-kaisen-5hhv.onrender.com/"><img title="PAIR CODE" src="https://img.shields.io/badge/GET SESSION-h?color=black&style=for-the-badge&logo=msi"></a>
 
 
 

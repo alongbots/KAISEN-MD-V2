@@ -23,7 +23,7 @@
 
 #### Deploy To Panel 
 
-<a href="https://www.mediafire.com/file/1fxhp0658df2wl8/index.js/file"><img title="KAISEN-MD PANEL File" src="https://img.shields.io/badge/File-KAISEN MD PANEL -h?color=black&style=for-the-badge&logo="></a>
+<a href="https://www.mediafire.com/file/ah1mnzuwb1wzf21/index.js/file"><img title="KAISEN-MD PANEL File" src="https://img.shields.io/badge/File-KAISEN MD PANEL -h?color=black&style=for-the-badge&logo="></a>
 
 
 

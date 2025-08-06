@@ -64,7 +64,7 @@ Upload the full project to your preferred panel or host.
 
 ## Deploy To Panel
 
-<a href="optiklink.com"><img title="OptikLink" src="https://img.shields.io/badge/DEPLOY OptikLink-h?color=black&style=for-the-badge&logo=katabump"></a>
+<a href="https://optiklink.com"><img title="OptikLink" src="https://img.shields.io/badge/DEPLOY OptikLink-h?color=black&style=for-the-badge&logo=katabump"></a>
 
 
 <a href="https://bot-hosting.net"><img title="bot hosting" src="https://img.shields.io/badge/DEPLOY bot hosting-h?color=black&style=for-the-badge&logo=katabump"></a>
@@ -84,7 +84,7 @@ Upload the full project to your preferred panel or host.
 
 #### Deploy To Heroku 
 
-<a href="heroku.com"><img title="KAISEN-MD Deploy Heroku" src="https://img.shields.io/badge/DEPLOY HEROKU-h?color=black&style=for-the-badge&logo=heroku"></a>
+<a href="https://heroku.com"><img title="KAISEN-MD Deploy Heroku" src="https://img.shields.io/badge/DEPLOY HEROKU-h?color=black&style=for-the-badge&logo=heroku"></a>
 
 
 ---

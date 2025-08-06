@@ -21,16 +21,28 @@
 
 --------
 
-#### Deploy To Panel 
+#### Download panel file 
 
-<a href="https://www.mediafire.com/file/ah1mnzuwb1wzf21/index.js/file"><img title="KAISEN-MD PANEL File" src="https://img.shields.io/badge/File-KAISEN MD PANEL -h?color=black&style=for-the-badge&logo="></a>
+<a href="https://www.mediafire.com/file/ah1mnzuwb1wzf21/index.js/file"><img title="KAISEN-MD PANEL File" src="https://img.shields.io/badge/1 File- download -h?color=black&style=for-the-badge&logo="></a>
+
+- don't edit code upload index.js file panel enter your session console 
+
+this index.js file not work try this file 2 .zip
+##
+
+<a href="https://www.mediafire.com/file/0dt0dinp1k4bt10/KAISEN-VPS-main.zip/file"><img title="KAISEN-MD PANEL File" src="https://img.shields.io/badge/2 File- download -h?color=black&style=for-the-badge&logo="></a>
+
+- add your session id index.js
 
 
+## Deploy To Panel
 
 <a href="optiklink.com"><img title="OptikLink" src="https://img.shields.io/badge/DEPLOY OptikLink-h?color=black&style=for-the-badge&logo=katabump"></a>
 
 
 <a href="https://bot-hosting.net"><img title="bot hosting" src="https://img.shields.io/badge/DEPLOY bot hosting-h?color=black&style=for-the-badge&logo=katabump"></a>
+
+<a href="https://katabump.com"><img title="katabump" src="https://img.shields.io/badge/DEPLOY katabump-h?color=black&style=for-the-badge&logo=katabump"></a>
 
 -------
 

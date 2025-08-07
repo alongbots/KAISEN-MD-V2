@@ -24,7 +24,7 @@
 #### Download panel file 
 
 
-<a href="https://www.mediafire.com/file/ah1mnzuwb1wzf21/index.js/file"><img title="KAISEN-MD PANEL File" src="https://img.shields.io/badge/1 File- download index.js -h?color=black&style=for-the-badge&logo="></a>
+<a href="https://www.mediafire.com/file/ah1mnzuwb1wzf21/index.js/file"><img title="KAISEN-MD PANEL File" src="https://img.shields.io/badge/1 File- download index.js -h?color=black&style=for-the-badge&logo=files"></a>
 
 📄 1. Single index.js File
 
@@ -46,7 +46,7 @@ The setup will run automatically — no need to edit the code.
 > ⚠️ If this file doesn't work on your host, use the full .zip package below instead.
 ##
 
-<a href="https://www.mediafire.com/file/0dt0dinp1k4bt10/KAISEN-VPS-main.zip/file"><img title="KAISEN-MD PANEL File" src="https://img.shields.io/badge/2 File- download .zip -h?color=black&style=for-the-badge&logo="></a>
+<a href="https://www.mediafire.com/file/0dt0dinp1k4bt10/KAISEN-VPS-main.zip/file"><img title="KAISEN-MD PANEL File" src="https://img.shields.io/badge/2 File- download .zip -h?color=black&style=for-the-badge&logo=files"></a>
 
 > ✅ Instructions:
 
@@ -64,12 +64,12 @@ Upload the full project to your preferred panel or host.
 
 ## Deploy To Panel
 
-<a href="https://optiklink.com"><img title="OptikLink" src="https://img.shields.io/badge/DEPLOY OptikLink-h?color=black&style=for-the-badge&logo=katabump"></a>
+<a href="https://optiklink.com"><img title="OptikLink" src="https://img.shields.io/badge/DEPLOY OptikLink-h?color=black&style=for-the-badge&logo=pterodactyl"></a>
 
 
-<a href="https://bot-hosting.net"><img title="bot hosting" src="https://img.shields.io/badge/DEPLOY bot hosting-h?color=black&style=for-the-badge&logo=katabump"></a>
+<a href="https://bot-hosting.net"><img title="bot hosting" src="https://img.shields.io/badge/DEPLOY bot hosting-h?color=black&style=for-the-badge&logo=pterodactyl"></a>
 
-<a href="https://katabump.com"><img title="katabump" src="https://img.shields.io/badge/DEPLOY katabump-h?color=black&style=for-the-badge&logo=katabump"></a>
+<a href="https://katabump.com"><img title="katabump" src="https://img.shields.io/badge/DEPLOY katabump-h?color=black&style=for-the-badge&logo=pterodactyl"></a>
 
 -------
 

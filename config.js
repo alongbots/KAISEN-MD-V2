@@ -15,7 +15,7 @@ const toBool = (x) => x === 'true';
 const DB_URL = process.env.DATABASE_URL || '';
 
 module.exports = {
-  SESSION_ID: process.env.SESSION_ID || '',
+  SESSION_ID: process.env.SESSION_ID || 'KAISEN~ugxAGY7B#30spKtKGTdGP_HOpw1gELT_jqVO_M54NvIs86ACe9lw',
 
   HEROKU: {
     API_KEY: process.env.HEROKU_API_KEY,
@@ -57,7 +57,7 @@ module.exports = {
   API_TYPE: process.env.API_TYPE || 'all',
   BRAINSHOP: process.env.BRAINSHOP || '172372,nbjE0YAlyw3cpoMl',
 
-  SUDO: process.env.SUDO || '917003816486',
+  SUDO: process.env.SUDO || '918731810311',
   RMBG_KEY: process.env.RMBG_KEY || '',
   OPEN_AI: process.env.OPEN_AI || '',
   ELEVENLABS: process.env.ELEVENLABS || '',
